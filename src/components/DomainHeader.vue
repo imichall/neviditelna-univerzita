@@ -15,7 +15,7 @@
               :class="verboseMode ? 'transform translate-x-5' : 'transform translate-x-1'"
             ></div>
           </div>
-          <span class="ml-3 text-sm text-gray-600 dark:text-gray-400">Verbose view</span>
+          <span class="ml-3 text-sm text-gray-600 dark:text-gray-400">{{ i18nStore.t('common.verboseView') }}</span>
         </label>
       </div>
     </div>
@@ -24,6 +24,7 @@
 
 <script setup lang="ts">
 import type { DomainData } from '@/types'
+import { useI18nStore } from '@/stores/i18n'
 
 interface Props {
   domain: DomainData
@@ -32,4 +33,5 @@ interface Props {
 defineProps<Props>()
 
 const verboseMode = defineModel<boolean>('verboseMode', { required: true })
+const i18nStore = useI18nStore()
 </script>

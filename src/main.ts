@@ -28,14 +28,24 @@ const MyPreset = definePreset(Aura, {
   },
 })
 
-const app = createApp(App)
+async function initApp() {
+  const app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
-app.use(PrimeVue, {
-  theme: {
-    preset: MyPreset,
-  },
-})
+  app.use(createPinia())
 
-app.mount('#app')
+  // Initialize i18n after Pinia is available
+  const { useI18nStore } = await import('./stores/i18n')
+  const i18nStore = useI18nStore()
+  await i18nStore.initializeI18n()
+
+  app.use(router)
+  app.use(PrimeVue, {
+    theme: {
+      preset: MyPreset,
+    },
+  })
+
+  app.mount('#app')
+}
+
+initApp()

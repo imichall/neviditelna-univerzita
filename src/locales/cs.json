@@ -1,0 +1,55 @@
+{
+  "common": {
+    "ferda": "Ferda",
+    "login": "Přihlásit se",
+    "logout": "Odhlásit se",
+    "username": "Uživatelské jméno",
+    "password": "Heslo",
+    "verboseView": "Podrobný pohled",
+    "darkMode": "Tmavý režim",
+    "lightMode": "Světlý režim",
+    "show": "ZOBRAZIT",
+    "expires": "Expiruje za",
+    "handle": "Handle",
+    "organization": "Organizace",
+    "name": "Jméno",
+    "registrar": "Registrátor"
+  },
+  "auth": {
+    "loginTitle": "Přihlášení",
+    "loginSubtitle": "Systém správy domén",
+    "usernameLabel": "Uživatelské jméno",
+    "passwordLabel": "Heslo",
+    "loginButton": "Přihlásit se",
+    "loggingIn": "Přihlašování...",
+    "demoCredentials": "Demo přístupy",
+    "loginError": "Neplatné přihlašovací údaje"
+  },
+  "navigation": {
+    "applications": "APLIKACE",
+    "registry": "Registry"
+  },
+  "domain": {
+    "authInfo": "AuthInfo",
+    "expiresAt": "Expiruje",
+    "owner": "Vlastník",
+    "events": "Události",
+    "administrativeContacts": "Administrativní kontakty",
+    "stateFlags": "Stavové příznaky",
+    "nsset": "NSSet",
+    "keyset": "KeySet",
+    "createDate": "Datum vytvoření:",
+    "updateDate": "Datum aktualizace:",
+    "transferDate": "Datum převodu:",
+    "deleteDate": "Datum smazání:",
+    "dns": "DNS",
+    "dnsKeys": "DNS klíče",
+    "hidesIn": "Skryje se za",
+    "seconds": "s"
+  },
+  "stateFlags": {
+    "securityRestrictions": "Bezpečnostní omezení",
+    "zoneManagement": "Správa zóny",
+    "other": "Ostatní"
+  }
+}

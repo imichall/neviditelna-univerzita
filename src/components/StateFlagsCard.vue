@@ -2,7 +2,7 @@
   <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4 mb-4 transition-colors duration-200">
     <div class="flex items-center space-x-2 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">
       <i class="pi pi-flag text-red-500"></i>
-      <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200">State flags</h3>
+      <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200">{{ i18nStore.t('domain.stateFlags') }}</h3>
     </div>
 
     <!-- Brief mode - only active flags -->
@@ -37,6 +37,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18nStore } from '@/stores/i18n'
 
 interface StateFlag {
   name: string
@@ -55,6 +56,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const i18nStore = useI18nStore()
 
 // State flags grouped by groups from data
 const groupedStateFlags = computed(() => {
@@ -100,7 +102,7 @@ const groupedStateFlags = computed(() => {
 
 // Group name based on index
 function getGroupName(index: number): string {
-  const names = ['Security Restrictions', 'Zone Management']
-  return names[index] || `Group ${index + 1}`
+  const names = [i18nStore.t('stateFlags.securityRestrictions'), i18nStore.t('stateFlags.zoneManagement')]
+  return names[index] || i18nStore.t('stateFlags.other')
 }
 </script>

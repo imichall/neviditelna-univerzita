@@ -2,7 +2,7 @@
   <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4 transition-colors duration-200">
     <div class="flex items-center space-x-2 mb-3 pb-2 border-b border-gray-100 dark:border-gray-700">
       <i class="pi pi-key text-blue-500"></i>
-      <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200">AuthInfo</h3>
+      <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-200">{{ i18nStore.t('domain.authInfo') }}</h3>
     </div>
 
     <!-- AuthInfo section -->
@@ -12,7 +12,7 @@
           @click="showAuthCode"
           class="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 transition-colors"
         >
-          SHOW
+          {{ i18nStore.t('common.show') }}
         </button>
       </div>
       <div v-else class="space-y-2">
@@ -22,7 +22,7 @@
         </div>
         <div class="space-y-1">
           <div class="text-xs text-gray-600 dark:text-gray-400">
-            <span>Skryje se za {{ authInfoTimer }}s</span>
+            <span>{{ i18nStore.t('domain.hidesIn') }} {{ authInfoTimer }}{{ i18nStore.t('domain.seconds') }}</span>
           </div>
           <div class="w-full bg-gray-200 rounded-full h-1.5">
             <div
@@ -38,7 +38,7 @@
     <div class="pt-3 border-t border-gray-100 dark:border-gray-700">
       <div class="flex items-center space-x-2 mb-2">
         <i class="pi pi-calendar text-orange-500 text-sm"></i>
-        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Expires at:</span>
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ i18nStore.t('domain.expiresAt') }}:</span>
       </div>
       <div class="text-sm text-gray-900 dark:text-gray-100 font-medium ml-6">
         {{ formatDate(expiresAt) }}
@@ -49,12 +49,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18nStore } from '@/stores/i18n'
 
 interface Props {
   expiresAt: string
 }
 
 defineProps<Props>()
+
+const i18nStore = useI18nStore()
 
 const showAuthInfo = ref(false)
 const authInfoTimer = ref(0)

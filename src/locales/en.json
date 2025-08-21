@@ -1,0 +1,55 @@
+{
+  "common": {
+    "ferda": "Ferda",
+    "login": "Login",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "verboseView": "Verbose view",
+    "darkMode": "Dark mode",
+    "lightMode": "Light mode",
+    "show": "SHOW",
+    "expires": "Expires at",
+    "handle": "Handle",
+    "organization": "Organization",
+    "name": "Name",
+    "registrar": "Registrar"
+  },
+  "auth": {
+    "loginTitle": "Login",
+    "loginSubtitle": "Domain Registry System",
+    "usernameLabel": "Username",
+    "passwordLabel": "Password",
+    "loginButton": "Sign in",
+    "loggingIn": "Signing in...",
+    "demoCredentials": "Demo credentials",
+    "loginError": "Invalid credentials"
+  },
+  "navigation": {
+    "applications": "APPLICATIONS",
+    "registry": "Registry"
+  },
+  "domain": {
+    "authInfo": "AuthInfo",
+    "expiresAt": "Expires at",
+    "owner": "Owner",
+    "events": "Events",
+    "administrativeContacts": "Administrative contacts",
+    "stateFlags": "State flags",
+    "nsset": "NSSet",
+    "keyset": "KeySet",
+    "createDate": "Create date:",
+    "updateDate": "Update date:",
+    "transferDate": "Transfer date:",
+    "deleteDate": "Delete date:",
+    "dns": "DNS",
+    "dnsKeys": "DNS keys",
+    "hidesIn": "Hides in",
+    "seconds": "s"
+  },
+  "stateFlags": {
+    "securityRestrictions": "Security Restrictions",
+    "zoneManagement": "Zone Management",
+    "other": "Other"
+  }
+}

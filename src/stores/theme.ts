@@ -1,5 +1,6 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
+import { useAuthStore } from './auth'
 
 export const useThemeStore = defineStore('theme', () => {
   const isDarkMode = ref(false)
@@ -22,16 +23,30 @@ export const useThemeStore = defineStore('theme', () => {
     return null
   }
 
-  // Load theme from cookie on initialization
+  // Get current user for per-user theme preference
+  const authStore = useAuthStore()
+
+  // Load theme from cookie on initialization (per user)
   function initializeTheme() {
-    const savedTheme = getCookie('theme')
-    if (savedTheme) {
-      isDarkMode.value = savedTheme === 'dark'
+    if (authStore.currentUser) {
+      const cookieName = `theme_${authStore.currentUser.username}`
+      const savedTheme = getCookie(cookieName)
+      if (savedTheme) {
+        isDarkMode.value = savedTheme === 'dark'
+      } else {
+        // Default to system preference
+        isDarkMode.value = window.matchMedia('(prefers-color-scheme: dark)').matches
+      }
     } else {
-      // Default to system preference
+      // Default to system preference when no user
       isDarkMode.value = window.matchMedia('(prefers-color-scheme: dark)').matches
     }
     applyTheme()
+  }
+
+  // Load theme preference for current user
+  function loadThemePreference() {
+    initializeTheme()
   }
 
   // Apply theme to document
@@ -48,9 +63,12 @@ export const useThemeStore = defineStore('theme', () => {
     isDarkMode.value = !isDarkMode.value
   }
 
-  // Watch for theme changes and save to cookie
+  // Watch for theme changes and save to cookie (per user)
   watch(isDarkMode, (newValue) => {
-    setCookie('theme', newValue ? 'dark' : 'light')
+    if (authStore.currentUser) {
+      const cookieName = `theme_${authStore.currentUser.username}`
+      setCookie(cookieName, newValue ? 'dark' : 'light')
+    }
     applyTheme()
   })
 
@@ -60,5 +78,6 @@ export const useThemeStore = defineStore('theme', () => {
   return {
     isDarkMode,
     toggleTheme,
+    loadThemePreference,
   }
 })

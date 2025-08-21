@@ -8,7 +8,7 @@
           <button @click="toggleSidebar" class="p-1 hover:bg-blue-600 dark:hover:bg-blue-700 rounded transition-colors">
             <i class="pi pi-bars text-lg"></i>
           </button>
-          <h1 class="text-lg font-medium">Ferda</h1>
+          <h1 class="text-lg font-medium">{{ i18nStore.t('common.ferda') }}</h1>
         </div>
 
         <!-- Right side - User menu -->
@@ -36,14 +36,21 @@
                 class="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-2"
               >
                 <i :class="themeStore.isDarkMode ? 'pi pi-sun' : 'pi pi-moon'"></i>
-                <span>{{ themeStore.isDarkMode ? 'Light mode' : 'Dark mode' }}</span>
+                <span>{{ i18nStore.t(themeStore.isDarkMode ? 'common.lightMode' : 'common.darkMode') }}</span>
+              </button>
+              <button
+                @click="toggleLanguage"
+                class="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-2"
+              >
+                <span class="text-lg">{{ getCurrentLanguageFlag() }}</span>
+                <span>{{ getCurrentLanguageName() }}</span>
               </button>
               <button
                 @click="handleLogout"
                 class="w-full text-left px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-2"
               >
                 <i class="pi pi-sign-out"></i>
-                <span>Logout</span>
+                <span>{{ i18nStore.t('common.logout') }}</span>
               </button>
             </div>
           </div>
@@ -65,7 +72,7 @@
             class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 transition-opacity duration-200"
             :class="sidebarCollapsed ? 'opacity-0' : 'opacity-100'"
           >
-            APPLICATIONS
+            {{ i18nStore.t('navigation.applications') }}
           </h2>
 
           <!-- Navigation -->
@@ -79,7 +86,7 @@
                 class="text-sm font-medium transition-opacity duration-200"
                 :class="sidebarCollapsed ? 'opacity-0' : 'opacity-100'"
               >
-                Registry
+                                 {{ i18nStore.t('navigation.registry') }}
               </span>
             </div>
           </nav>
@@ -99,10 +106,12 @@ import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useThemeStore } from '@/stores/theme'
+import { useI18nStore } from '@/stores/i18n'
 
 const router = useRouter()
 const authStore = useAuthStore()
 const themeStore = useThemeStore()
+const i18nStore = useI18nStore()
 const showUserMenu = ref(false)
 const sidebarCollapsed = ref(false)
 
@@ -147,16 +156,34 @@ watch(sidebarCollapsed, (newValue) => {
   }
 })
 
-// Watch for user changes and reload sidebar state
+// Watch for user changes and reload sidebar state + other preferences
 watch(() => authStore.currentUser, (newUser) => {
   if (newUser) {
     loadSidebarState()
+    themeStore.loadThemePreference()
+    i18nStore.loadLanguagePreference()
   }
 })
 
 function handleLogout() {
   authStore.logout()
   router.push('/login')
+}
+
+// Language functions
+function toggleLanguage() {
+  const newLang = i18nStore.currentLanguage === 'cs' ? 'en' : 'cs'
+  i18nStore.setLanguage(newLang)
+}
+
+function getCurrentLanguageFlag() {
+  const lang = i18nStore.availableLanguages.find(l => l.code === i18nStore.currentLanguage)
+  return lang?.flag || '🌐'
+}
+
+function getCurrentLanguageName() {
+  const lang = i18nStore.availableLanguages.find(l => l.code === i18nStore.currentLanguage)
+  return lang?.name || 'Language'
 }
 
 function closeUserMenu(event: Event) {
