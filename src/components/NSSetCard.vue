@@ -13,7 +13,7 @@
         <span class="font-medium">Registrar:</span>
         <span class="ml-2 text-blue-600">{{ nsset.registrar }}</span>
       </div>
-      <div v-if="verboseMode">
+      <div>
         <span class="font-medium">DNS:</span>
         <div class="ml-4 mt-1 space-y-1 text-xs">
           <div v-for="dns in nsset.dns" :key="dns.name">
@@ -39,7 +39,6 @@ interface NSSet {
 
 interface Props {
   nsset: NSSet
-  verboseMode: boolean
 }
 
 defineProps<Props>()

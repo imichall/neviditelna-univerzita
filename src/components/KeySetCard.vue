@@ -13,7 +13,7 @@
         <span class="font-medium">Registrar:</span>
         <span class="ml-2 text-blue-600">{{ keyset.registrar }}</span>
       </div>
-      <div v-if="verboseMode">
+      <div>
         <span class="font-medium">DNS keys:</span>
         <div class="ml-4 mt-1 space-y-1 text-xs font-mono">
           <div v-for="key in keyset.dns_keys" :key="key">
@@ -34,7 +34,6 @@ interface KeySet {
 
 interface Props {
   keyset: KeySet
-  verboseMode: boolean
 }
 
 defineProps<Props>()

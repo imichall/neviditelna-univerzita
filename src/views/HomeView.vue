@@ -56,16 +56,10 @@ const verboseMode = computed({
     <!-- NSSet and KeySet cards -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
       <!-- NSSet card -->
-      <NSSetCard
-        :nsset="domain.nsset"
-        :verbose-mode="verboseMode"
-      />
+      <NSSetCard :nsset="domain.nsset" />
 
       <!-- KeySet card -->
-      <KeySetCard
-        :keyset="domain.keyset"
-        :verbose-mode="verboseMode"
-      />
+      <KeySetCard :keyset="domain.keyset" />
     </div>
   </AppLayout>
 </template>
