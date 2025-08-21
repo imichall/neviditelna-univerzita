@@ -93,8 +93,8 @@ export const useI18nStore = defineStore('i18n', () => {
 
   // Get available languages
   const availableLanguages = computed(() => [
-    { code: 'cs', name: 'Čeština', flag: '🇨🇿' },
-    { code: 'en', name: 'English', flag: '🇺🇸' },
+    { code: 'cs', name: 'Čeština', flag: 'CS' },
+    { code: 'en', name: 'English', flag: 'EN' },
   ])
 
   // Initialize i18n

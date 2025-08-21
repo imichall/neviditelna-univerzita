@@ -13,3 +13,7 @@ dist-ssr
 .idea
 
 *.tsbuildinfo
+
+# Netlify deployment configs
+.netlify/
+netlify.toml
