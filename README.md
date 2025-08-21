@@ -1,33 +1,77 @@
-# .
+# Neviditelná Univerzita - Domain Registry
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue 3 application for domain management based on Ferda registry design.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Authentication** - User account authentication system
+- **Domain Detail** - Display information for domain neviditelna-univerzita.cz
+- **Verbose Mode** - Toggle between brief and detailed view
+- **Modern UI** - Responsive design with Tailwind CSS and PrimeVue components
 
-## Type Support for `.vue` Imports in TS
+## Technologies
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- **Vue 3** with Composition API and `<script setup>`
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Utility-first CSS framework
+- **PrimeVue** - Vue component library (icons and behaviors only)
+- **Pinia** - State management
+- **Vue Router** - Routing with navigation guards
 
-## Customize configuration
+## Getting Started
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### Install dependencies
 
-## Project Setup
-
-```sh
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Development server
 
-```sh
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Production build
 
-```sh
+```bash
 npm run build
 ```
+
+## Authentication
+
+Demo accounts for testing:
+
+| Username | Password | Name           | Role  |
+| -------- | -------- | -------------- | ----- |
+| michal   | password | Michal Svoboda | admin |
+| jan      | password | Jan Musílek    | admin |
+
+## Architecture
+
+### Components
+
+- `AppLayout.vue` - Main layout with header and collapsible sidebar
+- `HomeView.vue` - Complete domain detail view with all sections
+- Individual card components for AuthInfo, Owner, Events, etc.
+
+### Stores (Pinia)
+
+- `useAuthStore` - User authentication management with localStorage persistence
+- `useDomainStore` - Domain data and verbose mode management
+
+### Data
+
+- `src/data/users.json` - User list for authentication
+- `src/data/domain-detail.json` - Domain detail information
+
+## Styling Approach
+
+Following user preferences:
+
+- **PrimeVue for icons and behaviors only** (animations)
+- **Tailwind CSS for all styling**
+- **Compact, less modern design layout**
+
+- **No inline styles**
+- **No scoped CSS**
