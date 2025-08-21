@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-white rounded-lg shadow-sm p-4 mb-4">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4 mb-4 transition-colors duration-200">
     <div class="flex items-center justify-between">
-      <h1 class="text-xl font-semibold text-gray-800">{{ domain.fqdn }}</h1>
+      <h1 class="text-xl font-semibold text-gray-800 dark:text-gray-200">{{ domain.fqdn }}</h1>
       <div class="flex items-center space-x-2">
         <label class="inline-flex items-center cursor-pointer">
           <input v-model="verboseMode" type="checkbox" class="sr-only" />
@@ -15,7 +15,7 @@
               :class="verboseMode ? 'transform translate-x-5' : 'transform translate-x-1'"
             ></div>
           </div>
-          <span class="ml-3 text-sm text-gray-600">Verbose view</span>
+          <span class="ml-3 text-sm text-gray-600 dark:text-gray-400">Verbose view</span>
         </label>
       </div>
     </div>
@@ -27,15 +27,9 @@ import type { DomainData } from '@/types'
 
 interface Props {
   domain: DomainData
-  verboseMode: boolean
-}
-
-interface Emits {
-  (e: 'update:verboseMode', value: boolean): void
 }
 
 defineProps<Props>()
-defineEmits<Emits>()
 
 const verboseMode = defineModel<boolean>('verboseMode', { required: true })
 </script>
